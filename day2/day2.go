@@ -24,7 +24,12 @@ const DOWN = "down"
 const UP = "up"
 
 func main() {
-	file, error := os.Open("/Users/maks/Dev/maks/Golang/adventOfCode/day2/input.txt")
+	rootPath, error := os.Getwd()
+	if error != nil {
+		panic("Cannot get executable path")
+	}
+
+	file, error := os.Open(rootPath + "/day2/input.txt")
 	if error != nil {
 		log.Fatalf("Unable to read file %s", error)
 	}
