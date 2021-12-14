@@ -6,18 +6,24 @@ import (
 	"os"
 )
 
-/**
-
- */
-func GetFile(relativePath string) *os.File {
+func GetPath(relativePath string) string {
 	rootPath, pathError := os.Getwd()
 	if pathError != nil {
 		log.Fatalf("Cannot get rooted path name: %s", pathError)
 	}
 
-	file, fileError := os.Open(rootPath + relativePath)
+	return rootPath + relativePath
+}
+
+/**
+
+ */
+func GetFile(relativePath string) *os.File {
+	path := GetPath(relativePath)
+
+	file, fileError := os.Open(path)
 	if fileError != nil {
-		log.Fatalf("Cannot open file: %s \n%s", rootPath+relativePath, fileError)
+		log.Fatalf("Cannot open file: %s \n%s", path, fileError)
 	}
 
 	return file
