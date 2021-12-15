@@ -2,8 +2,12 @@ package adventOfCode2021
 
 import (
 	"bufio"
+	"fmt"
 	"log"
 	"os"
+	"path/filepath"
+	"runtime"
+	"strconv"
 )
 
 func GetPath(relativePath string) string {
@@ -15,11 +19,14 @@ func GetPath(relativePath string) string {
 	return rootPath + relativePath
 }
 
-/**
+func GetFolderPath() string {
+	_, filePath, _, _ := runtime.Caller(0)
 
- */
+	return filepath.Dir(filePath)
+}
+
 func GetFile(relativePath string) *os.File {
-	path := GetPath(relativePath)
+	path := GetFolderPath() + relativePath
 
 	file, fileError := os.Open(path)
 	if fileError != nil {
@@ -41,4 +48,24 @@ func ScanLines(file *os.File) []string {
 	}
 
 	return data
+}
+
+func ParseToInt(strVal string) int {
+	val, err := strconv.Atoi(strVal)
+	if err != nil {
+		panic(err)
+	}
+
+	return val
+}
+
+func Print2dArray(arr [][]int) {
+	for i := 0; i < len(arr); i++ {
+		for j := 0; j < len(arr[0]); j++ {
+			fmt.Printf("%3d", arr[j][i])
+		}
+		fmt.Println()
+	}
+
+	fmt.Println()
 }
