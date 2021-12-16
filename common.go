@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strconv"
+	"time"
 )
 
 func GetPath(relativePath string) string {
@@ -68,4 +69,12 @@ func Print2dArray(arr [][]int) {
 	}
 
 	fmt.Println()
+}
+
+func MeasureTime() func() {
+	start := time.Now()
+
+	return func() {
+		fmt.Printf("%s \n", time.Since(start))
+	}
 }

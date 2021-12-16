@@ -21,6 +21,8 @@ func main() {
 	file := adventOfCode2021.GetFile("/day6/input.txt")
 	line := adventOfCode2021.ScanLines(file)[0]
 
+	stop := adventOfCode2021.MeasureTime()
+
 	lineValues := strings.Split(line, ",")
 	values := make([]int, 0)
 
@@ -29,4 +31,6 @@ func main() {
 	}
 
 	fmt.Printf("\nResult: %d \n", calcLeterfishForXDays(values, 256))
+
+	stop()
 }
