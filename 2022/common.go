@@ -1,4 +1,4 @@
-package adventOfCode2021
+package common
 
 import (
 	"bufio"
@@ -37,8 +37,8 @@ func GetFile(relativePath string) *os.File {
 	return file
 }
 
-/**
-
+/*
+*
  */
 func ScanLines(file *os.File) []string {
 	data := make([]string, 0)
